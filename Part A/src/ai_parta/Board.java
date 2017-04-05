@@ -15,32 +15,32 @@ public class Board {
 		numLegalVMoves = 0;
 	}
 	
-	public void setBoard(int row, int col, char ch) {
+	public void setBoard(int x, int y, char ch) {
 		Square square = null;
 		switch (ch) {
 		case 'H':
-			square = new HPiece(row, col);
+			square = new HPiece(x, y);
 			break;
 		case 'V':
-			square = new VPiece(row, col);
+			square = new VPiece(x, y);
 			break;
 		case 'B':
-			square = new Block(row, col);
+			square = new Block(x, y);
 			break;
 		case '+':
-			square = new Square(row, col, true);
+			square = new Square(x, y, true);
 			break;
 		default:
 			break;
 		}
-		board[row][col] = square;
+		board[x][y] = square;
 	}
 	
 	public void calculateLegalMoves() {
 		numLegalHMoves = 0;
 		numLegalVMoves = 0;
 		
-		for (int i = 0; i < size; i++) {
+		for (int i = size - 1; i >= 0; i--) {
 			for (int j = 0; j < size; j++) {
 				Square current = board[i][j];
 				if (current instanceof Block || current.isEmpty()) {
@@ -48,13 +48,19 @@ public class Board {
 				}
 				
 				if (current instanceof HPiece) {
-					numLegalHMoves = i - 1 >= 0 ? numLegalHMoves + (board[i-1][j].isEmpty() ? 1 : 0) : numLegalHMoves;
+					// up
 					numLegalHMoves = i + 1 < size ? numLegalHMoves + (board[i+1][j].isEmpty() ? 1 : 0) : numLegalHMoves;
+					// down
+					numLegalHMoves = i - 1 >= 0 ? numLegalHMoves + (board[i-1][j].isEmpty() ? 1 : 0) : numLegalHMoves;
+					// right
 					numLegalHMoves = j + 1 < size ? numLegalHMoves + (board[i][j+1].isEmpty() ? 1 : 0) : numLegalHMoves;
 				}
 				if (current instanceof VPiece) {
-					numLegalVMoves = i - 1 >= 0 ? numLegalVMoves + (board[i-1][j].isEmpty() ? 1 : 0) : numLegalVMoves;
+					// up
+					numLegalVMoves = i + 1 < size ? numLegalVMoves + (board[i+1][j].isEmpty() ? 1 : 0) : numLegalVMoves;
+					// left
 					numLegalVMoves = j - 1 >= 0 ? numLegalVMoves + (board[i][j-1].isEmpty() ? 1 : 0) : numLegalVMoves;
+					// right
 					numLegalVMoves = j + 1 < size ? numLegalVMoves + (board[i][j+1].isEmpty() ? 1 : 0) : numLegalVMoves;
 				}
 			}
@@ -72,7 +78,7 @@ public class Board {
 	@Override
 	public String toString() {
 		String str = new String();
-		for (int i = 0; i < size; i++) {
+		for (int i = size - 1; i >= 0; i--) {
 			for (int j = 0; j < size; j++) {
 				str += board[i][j].toString();
 			}

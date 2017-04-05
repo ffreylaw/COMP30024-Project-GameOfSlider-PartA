@@ -13,13 +13,13 @@ public class Main {
 		Board board = new Board(size);
 		
 		reader.nextLine();
-		int row = 0;
-		while (row < size && reader.hasNextLine()) {
+		int i = size - 1;
+		while (i >= 0 && reader.hasNextLine()) {
 			String line = reader.nextLine();
-			for (int col = 0; col < line.length(); col++) {
-				board.setBoard(row, col, line.charAt(col));
+			for (int j = 0; j < line.length(); j++) {
+				board.setBoard(i, j, line.charAt(j));
 			}
-			row++;
+			i--;
 		}
 		
 		board.calculateLegalMoves();
