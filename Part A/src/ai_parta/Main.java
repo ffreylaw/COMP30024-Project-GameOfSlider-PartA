@@ -13,6 +13,7 @@ public class Main {
 		Board board = new Board(size);
 		
 		reader.nextLine();
+		
 		int i = size - 1;
 		while (i >= 0 && reader.hasNextLine()) {
 			String line = reader.nextLine();
