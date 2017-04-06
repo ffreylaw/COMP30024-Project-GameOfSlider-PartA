@@ -60,6 +60,9 @@ public class Board {
 			numLegalHMoves = i - 1 >= 0 ? numLegalHMoves + (board[i-1][j].isEmpty() ? 1 : 0) : numLegalHMoves;
 			// right
 			numLegalHMoves = j + 1 < size ? numLegalHMoves + (board[i][j+1].isEmpty() ? 1 : 0) : numLegalHMoves;
+			if (j + 1 == size) {
+				numLegalHMoves += 1;
+			}
 		}
 		
 		for (VPiece v: allVPieces) {
@@ -71,6 +74,9 @@ public class Board {
 			numLegalVMoves = j - 1 >= 0 ? numLegalVMoves + (board[i][j-1].isEmpty() ? 1 : 0) : numLegalVMoves;
 			// right
 			numLegalVMoves = j + 1 < size ? numLegalVMoves + (board[i][j+1].isEmpty() ? 1 : 0) : numLegalVMoves;
+			if (i + 1 == size) {
+				numLegalVMoves += 1;
+			}
 		}
 		
 	}
