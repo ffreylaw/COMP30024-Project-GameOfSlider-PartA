@@ -1,4 +1,4 @@
-package ai_parta;
+package cell;
 
 public class VPiece extends Piece {
 

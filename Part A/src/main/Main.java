@@ -1,4 +1,4 @@
-package ai_parta;
+package main;
 
 import java.util.Scanner;
 

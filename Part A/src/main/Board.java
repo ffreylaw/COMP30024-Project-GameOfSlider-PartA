@@ -1,6 +1,11 @@
-package ai_parta;
+package main;
 
 import java.util.ArrayList;
+
+import cell.Block;
+import cell.HPiece;
+import cell.Square;
+import cell.VPiece;
 
 public class Board {
 	
